@@ -1,0 +1,27 @@
+{
+  "name": "tpi",
+  "version": "1.0.0",
+  "description": "proyecto de web 2 fotaza",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ego572/TPI-WEB2.git"
+  },
+  "type": "module",
+  "author": "jeremias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ego572/TPI-WEB2/issues"
+  },
+  "homepage": "https://github.com/Ego572/TPI-WEB2#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pug": "^3.0.4"
+  }
+}
