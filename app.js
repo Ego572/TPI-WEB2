@@ -1,5 +1,5 @@
 import express from 'express';
- import 'dotenv/config'
+import 'dotenv/config'
 //Constantes
 
 const PORT = process.env.PORT;
@@ -9,20 +9,26 @@ const app = express();
 
 //middlewares
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 //motor de plantillas
 
 app.set('view engine', 'pug');
-app.set('views','./views');
+app.set('views', './views');
 
 //rutas
 app.get('/', (req, res) => {
     res.render('index');
-
-
 })
 
+app.get('/shop', (req, res) => {
+    res.render('shop');
+})
+
+
+app.get('/art', (req, res) => {
+    res.render('art');
+})
 
 
 //Servidor
