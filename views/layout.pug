@@ -2,17 +2,30 @@ doctype html
 html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="/styles/style1.css")
         block metadata
 
 
 
 
     body 
-    nav 
-        a(href="/") Inicio 
-        a(href="/shop")  Tienda 
+        nav.navbar 
+            div.left 
+                a.button(href="/") Inicio
+                a.button(href="/shop") Tienda 
+            div.center
+                form(action="/search" method="GET")
+                    input(type="text" name="query" placeholder="Buscar...")
+                    button(type="submit") Buscar
+
+            div.right 
+                a.button(href="/login") Login
+                a.button(href="/register") Register    
+            
+
+
+
     main 
         block content 
-    
+
