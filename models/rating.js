@@ -3,31 +3,43 @@ import sequelize from "../db/config";
 
 class rating extends Model { }
 
-Rating.init(
-  {
-    idRating: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      unique:true,
-      autoIncrement: true,
-    },
-    idPhoto: {
-      type: DataTypes.INTEGER, 
-    },
-    idUser:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    }, 
-    score:{
-        type: DataTypes.INTEGER,
-        allowNull:false,
-    } 
+rating.init({
+
+  idRating: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+
+
   },
+  valor: {
+    type: DataTypes.INTEGER,
+    allowNull: null,
+
+    validate: {
+      min: 1,
+      max: 5
+    }
+
+
+  },
+
+
+},
   {
-    sequelize, 
-    tableName: 'Ratings',
+    sequelize,
+    tableName: 'rating',
     timestamps: true,
-  },
+
+    indexes: [
+      {
+        unique: true,
+        fields: ['idUser', 'idImage']
+      }
+
+
+    ]
+
+
+  }
 );
-export default Rating;

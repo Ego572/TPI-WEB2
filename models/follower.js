@@ -21,7 +21,7 @@ Follower.init(
   },
   {
     sequelize, 
-    tableName: 'Followers',
+    tableName: 'Follower',
     timestamps: true,
   },
 );

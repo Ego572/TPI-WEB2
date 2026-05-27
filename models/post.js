@@ -1,14 +1,14 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../db/config";
 
-class art extends Model { }
+class post extends Model { }
 
 
 
-art.init(
+post.init(
 
     {
-        idArt: {
+        idPost: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -17,7 +17,7 @@ art.init(
 
 
         },
-        tittle: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
 
@@ -31,7 +31,15 @@ art.init(
 
         },
 
-        userID: {
+        idImage: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: true,
+
+
+        },
+
+        idUser: {
             type: DataTypes.INTEGER,
             references: {
 
@@ -50,11 +58,12 @@ art.init(
 
     {
         sequelize,
-        tableName: 'tag',
+        tableName: 'post',
         timestamps: true,
 
     },
 
 
 
-)
+);
+export default post
