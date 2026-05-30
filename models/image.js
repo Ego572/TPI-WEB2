@@ -40,16 +40,6 @@ image.init({
 
     },
 
-    comentarioshabilitados: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true
-    },
-
-
-
-
-
-
 
 
 
@@ -60,10 +50,6 @@ image.init({
         tableName: 'image',
         timestamps: true
     }
-
-
-
-
 
 
 

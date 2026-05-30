@@ -6,63 +6,65 @@ class post extends Model { }
 
 
 post.init(
-
     {
         idPost: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             primaryKey: true,
-            unique: true,
             autoIncrement: true,
 
 
+
         },
-        title: {
-            type: DataTypes.STRING,
+
+        titulo: {
+            type: DataTypes.STRING(100),
             allowNull: false,
 
 
-        },
+            validate: {
+                notEmpty: true,
 
-        description: {
-            type: DataTypes.STRING,
-
-
-
-        },
-
-        idImage: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true,
-
-
-        },
-
-        idUser: {
-            type: DataTypes.INTEGER,
-            references: {
-
-                model: 'user',
-                key: 'idUser'
 
             }
 
 
-        }
+
+        },
+        descripcion: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+
+
+            validate: {
+                notEmpty: true
+            }
+
+
+
+        },
+
+        comentariosHabilitados: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true,
+
+
+        },
+
+
+
+
+
 
 
 
     },
-
 
     {
         sequelize,
         tableName: 'post',
-        timestamps: true,
-
-    },
-
+        timestamps: true
+    }
 
 
 );

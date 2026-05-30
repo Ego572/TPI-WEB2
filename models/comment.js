@@ -1,52 +1,33 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../db/config";
 
-class comment extends Model{}
+class comment extends Model { }
 
 
 comment.init(
     {
-        idComment:{
+        idComment: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             unique: true,
             autoIncrement: true,
 
+        },
+        texto: {
+
+            type: DataTypes.TEXT,
+            allowNull: false,
 
         },
-        description: {
-
-            type:   DataTypes.STRING,
-            allowNull: false,
-
-           },
-
-           idUser: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
 
 
+    },
 
-           },
-           idArt: {
-            type
-
-           }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    {
+        sequelize,
+        tableName: 'Comment',
+        timestamps: true
 
 
     }
@@ -59,4 +40,6 @@ comment.init(
 
 
 
-)
+);
+
+export default comment;

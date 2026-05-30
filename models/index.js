@@ -1,6 +1,6 @@
 import sequelize from "../db/config";
 import user from "./user.js"
-import followers from "./followers.js"
+import followers from "./follower.js"
 import like from "./like.js"
 import favourite from "./favourite.js"
 import tag from "./tag.js"
@@ -9,11 +9,10 @@ import comment from "./comment.js"
 import art from "./art.js"
 import report from "./report.js"
 import ratting from "./rating.js"
+import interest from "./interest.js"
 
 
 // un usuario puede subir muchas imagenes 
-
-user.hasMany(art);
 
 
 
