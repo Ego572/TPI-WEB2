@@ -13,16 +13,22 @@ Follower.init(
       unique:true,
       autoIncrement: true,
     },
-    idFollowee: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      unique:true,
-    }
+
   },
   {
     sequelize, 
     tableName: 'Follower',
     timestamps: true,
+
+    indexes: [
+      {
+        unique: true,
+        fields: [
+          "follower_id",
+          "following_id"
+        ]
+      }
+    ]
   },
 );
 export default Follower;

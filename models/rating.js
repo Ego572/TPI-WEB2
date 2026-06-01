@@ -43,3 +43,5 @@ rating.init({
 
   }
 );
+
+export default rating
