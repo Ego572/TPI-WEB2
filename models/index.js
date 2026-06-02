@@ -1,7 +1,6 @@
-import sequelize from "../db/config";
+import sequelize from "../db/config.js";
 import User from "./user.js"
 import Followers from "./follower.js"
-import like from "./like.js"
 import favourite from "./favourite.js"
 import tag from "./tag.js"
 import msg from "./message.js"
@@ -79,7 +78,7 @@ rating.belongsTo(image,{
 
 // un usuario marca muchas imagenes como "me interesa"
 
-user.hasMany.apply(interest,{
+user.hasMany(interest,{
     foreignKey: "idUser"
 });
 
@@ -93,7 +92,7 @@ image.hasMany(interest,{
     foreignKey: "idImage"
 })
 
-interest.belongsTo(Image,{
+interest.belongsTo(image,{
     foreignKey: "idImage"
 })
 
@@ -103,13 +102,15 @@ interest.belongsTo(Image,{
 user.belongsToMany(user, {
     through: Followers,
     as: "following",
-    foreignKey: "following_id"
+    foreignKey: "follower_id",
+    otherKey: "following_id"
 })
 
 user.belongsToMany(user,{
     through: Followers,
     as: "followers",
-    foreignKey:"following_id"
+    foreignKey:"following_id",
+    otherKey:"follower_id"
 })
 
 
@@ -133,7 +134,7 @@ message.belongsTo(user,{
 
 message.belongsTo(user,{
     foreignKey: "idSender",
-    as: "receiver"
+    as: "sender"
 })
 
 message.belongsTo(user,{
@@ -176,6 +177,27 @@ report.belongsTo(user,{
 comment.hasMany(report,{
     foreignKey: "idComment"
 })
+
+//un usuario puede guardar muchas publicaciones como favoritas y una publicacion puede estar en favoritos de muchos usuarios
+user.hasMany(favourite, {
+    foreignKey: "idUser"
+});
+
+favourite.belongsTo(user, {
+    foreignKey: "idUser"
+});
+
+
+post.hasMany(favourite, {
+    foreignKey: "idPost"
+});
+
+favourite.belongsTo(post, {
+    foreignKey: "idPost"
+});
+
+
+
 
 report.belongsTo(comment,{
     foreignKey:"idComment"
@@ -242,3 +264,4 @@ export async function connectDatabase() {
     
 }
 
+export {collection,comment,favourite,Followers,image,interest,message,notification,post,rating,report,tag,user}

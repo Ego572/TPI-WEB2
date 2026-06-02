@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../db/config";
+import sequelize from "../db/config.js";
 
 class report extends Model { }
 
@@ -59,6 +59,12 @@ report.init(
         }
 
 
+    },
+
+    {
+        sequelize,
+        tableName: 'report',
+        timestamps: true
     }
 
 

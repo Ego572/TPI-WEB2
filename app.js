@@ -1,5 +1,7 @@
 import express from 'express';
 import 'dotenv/config'
+import sequelize from './db/config.js';
+import { connectDatabase } from './models/index.js';
 //Constantes
 
 const PORT = process.env.PORT;
@@ -32,7 +34,21 @@ app.get('/art', (req, res) => {
 })
 
 
-//Servidor
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`)
-});
+//conexion a bd
+sequelize.sync({alter: true}).then(() => {
+
+    //Servidor
+    app.listen(PORT, (err) => {
+        if (err) {
+            console.log('Error al inicar el servidor', err)
+            return;
+        }
+        console.log(`Servidor escuchando en el puerto ${PORT}`)
+    });
+
+
+})
+    .catch((err) => {
+        console.error('Error sincronizando la bd: ',err)
+    })
+

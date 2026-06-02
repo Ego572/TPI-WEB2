@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../db/config";
+import sequelize from "../db/config.js";
 
 class rating extends Model { }
 

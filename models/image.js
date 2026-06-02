@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../db/config";
+import sequelize from "../db/config.js";
 
 class image extends Model { }
 
@@ -7,7 +7,7 @@ class image extends Model { }
 image.init({
 
     idImage: {
-        tpye: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
@@ -31,7 +31,7 @@ image.init({
     },
 
     watermark: {
-        type: DataTypes, BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false
     },
 
