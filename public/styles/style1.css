@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');   
+
+
 body {
     margin: 0;
-    background-color: #494545;
+    background-color: #000;
 }
 
+.navbar{
+box-shadow: 0 0 20px gold;
+}
 
-.navbar {
+.navbar-box {
+    
     display: flex;
     justify-content: space-between;
 
@@ -13,6 +20,7 @@ body {
     padding: 15x 30px;
 
     background: #000
+    
 }
 
 .left,
@@ -21,7 +29,7 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Poppins', sans-serif;
 
 
 
@@ -29,27 +37,28 @@ body {
 
 .center input {
     background-color: #000;
-    color: #FFC857;
+    color: gold;
 
 
 }
 
 input:focus {
-    outline: #FFC857 solid 2px;
-    box-shadow: 0 0 5px #FFC857;
+    outline: gold solid 2px;
+    box-shadow: 0 0 5px gold;
 }
 
-input::placeholder {
-    color: #FFC857;
+
+.center input::placeholder {
+    color: white;
     opacity: 0.7; 
 }
 
 .button {
-
-    color: #FFC857;
+    font-family: 'Poppins', sans-serif;
+    color: gold;
     text-decoration: none;
 
-    box-shadow: 0 5px 10px #FFC857;
+    box-shadow: 0 0px 10px gold;
     padding: 15px;
 
 }
@@ -58,20 +67,23 @@ input::placeholder {
 .center input {
     padding: 8px 12px;
 
-    border: none;
-    border-radius: 8px;
 
+    border-radius: 8px;
+    border: gold solid;
+    box-shadow: 0 0 10px gold;
     width: 250px;
 }
 
 
 .center button {
 
-    font-family: 'Courier New', Courier, monospace;
-    color: #FFC857;
+    font-family: 'Poppins', sans-serif;
+   
+    color: gold;
     background-color: #000;
-
-    box-shadow: 0 10px 10px #FFC857;
+    border: none;
+    
+    box-shadow: 0 0px 10px gold;
     padding: 15px;
 
 }

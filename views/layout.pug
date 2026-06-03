@@ -10,19 +10,20 @@ html(lang="en")
 
 
     body 
-        nav.navbar 
-            div.left 
-                a.button(href="/") Inicio
-                a.button(href="/shop") Tienda 
-            div.center
-                form(action="/search" method="GET")
-                    input(type="text" name="query" placeholder="Buscar...")
-                    button(type="submit") Buscar
+        .navbar 
+            .navbar-box
+                .left 
+                    a.button(href="/") Inicio
+                    a.button(href="/shop") Tienda 
+                .center
+                    form(action="/search" method="GET")
+                        input(type="text" name="query" placeholder="Buscar...")
+                        button(type="submit") Buscar
 
-            div.right 
-                a.button(href="/login") Login
-                a.button(href="/register") Register    
-            
+                .right 
+                    a.button(href="/login") Login
+                    a.button(href="/register") Register    
+                
 
 
 

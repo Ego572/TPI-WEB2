@@ -1,27 +1,33 @@
-doctype html
-html(lang="en")
-    head
+
+extends layout.pug
+
+block metadata
         title login 
-        link(rel="stylesheet", href="/styles/stylelogin.css")
-    body 
-        .container
+        link(rel="stylesheet" href="/styles/stylelogin.css")
+block content 
+        .container-login
+            .login-box
+                .container-form-login
 
-            form(action="/login" method="POST")
-                    h1 Login
+                form(action="/login" method="POST")
+                    h1 Iniciar Sesion
 
-                    .input-group
-                        input(type="text" name="username" id="username" placeholder= "Username" required)
-                    .input-group
-                        input(type="password" name="password" id="password" required placeholder="Password")
-                    .btn
-                             button(type="submit") Login     
+                    .input-group-login
 
-                    .remember-forgot
+                        input(type="text" name="username" id="username"  required placeholder= "Usuario")
+                    .input-group-login
+
+                        input(type="password" name="password" id="password" required placeholder= "Contraseña")
+
+
+                    .remember-forgot-login
                         input(type="checkbox") 
                         label Recordarme 
                         a(href="#") Olvidaste tu contraseña? 
+                        .btn-login 
+                            button(type="submit") Iniciar Sesion   
 
-                    .register-link
-                    label No tienes cuenta? 
-                    a(href="#") Registrate! 
+                    .register-link-login
+                        label No tienes cuenta? 
+                        a(href="#") Registrate! 
 
