@@ -1,6 +1,27 @@
- doctype html
+doctype html
 html(lang="en")
     head
         title login 
+        link(rel="stylesheet", href="/styles/stylelogin.css")
     body 
-        
+        .container
+
+            form(action="/login" method="POST")
+                    h1 Login
+
+                    .input-group
+                        input(type="text" name="username" id="username" placeholder= "Username" required)
+                    .input-group
+                        input(type="password" name="password" id="password" required placeholder="Password")
+                    .btn
+                             button(type="submit") Login     
+
+                    .remember-forgot
+                        input(type="checkbox") 
+                        label Recordarme 
+                        a(href="#") Olvidaste tu contraseña? 
+
+                    .register-link
+                    label No tienes cuenta? 
+                    a(href="#") Registrate! 
+
