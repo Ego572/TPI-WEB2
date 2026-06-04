@@ -1,6 +1,30 @@
 extends layout.pug
+
 block metadata
         
-
+        link(rel="stylesheet", href="/styles/styleRegister.css")
         title Document
 block content 
+        .register-container 
+                .register-box
+                        .register-form 
+                                form(action="/register" method= "POST")
+                                        h1 Registrarse 
+
+                                        .input-group-register 
+                                                input(type="text" name= "username" id= "username" required placeholder= "Usuario")
+                                        .input-group-register 
+                                                input(type="email" name="gmail" id= "gmail" required placeholder= "Correo electronico")
+                                        .input-group-register 
+                                                input(type="password" name="password" id= "password" required placeholder= "Contraseña")
+                                        .input-group-register 
+                                                input(type="password" name="confirm-password" id="confirm_password" required placeholder= "Confirmar Contraseña")
+                                
+                                        .register-btn
+                                                button(type="submit") Crear Cuenta
+
+
+
+                                        .register-login-link
+                                                label Ya tienes cuenta?
+                                                a(href= "#") Iniciar Sesion  
