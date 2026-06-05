@@ -12,13 +12,13 @@ block content
                                         h1 Registrarse 
 
                                         .input-group-register 
-                                                input(type="text" name= "username" id= "username" required placeholder= "Usuario")
+                                                input(type="text" name= "username" id= "username" required placeholder= "Usuario" values= formValues ? formValues.username : '')
                                         .input-group-register 
-                                                input(type="email" name="gmail" id= "gmail" required placeholder= "Correo electronico")
+                                                input(type="email" name="gmail" id= "gmail" required placeholder= "Correo electronico" values= formValues ? formValues.gmail  : '')
                                         .input-group-register 
-                                                input(type="password" name="password" id= "password" required placeholder= "Contraseña")
+                                                input(type="password" name="password" id= "password" required placeholder= "Contraseña" values= formValues ? formValues.password : '')
                                         .input-group-register 
-                                                input(type="password" name="confirm-password" id="confirm_password" required placeholder= "Confirmar Contraseña")
+                                                input(type="password" name="confirm_password" id="confirm_password" required placeholder= "Confirmar Contraseña" values= formValues ? formValues.confirm_password : '')
                                 
                                         .register-btn
                                                 button(type="submit") Crear Cuenta
