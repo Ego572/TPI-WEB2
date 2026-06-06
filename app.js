@@ -2,6 +2,7 @@ import express from 'express';
 import 'dotenv/config'
 import sequelize from './db/config.js';
 import { connectDatabase } from './models/index.js';
+import userRoutes from './routes/userRoutes.js';
 //Constantes
 
 const PORT = process.env.PORT;
@@ -21,6 +22,8 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 //rutas
+
+app.use('/', userRoutes);
 
 /* 
 app.get('/login', (req, res) => {
