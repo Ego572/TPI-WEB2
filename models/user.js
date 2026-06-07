@@ -56,26 +56,7 @@ user.init(
 
         },
 
-        fullname: {
-
-            type: DataTypes.STRING,
-            allowNull: false,
-
-
-
-        },
-
-        birthDate: {
-            type: DataTypes.DATEONLY,
-            allowNull: false,
-
-
-
-        },
-
-
-
-
+       
 
     },
 

@@ -1,0 +1,10 @@
+mixin alert(alert=undefined)
+  if alert
+    case alert.status
+      when "error"
+        .alert.error
+          p #{alert.text}
+      when "success"
+      default
+        .alert.success
+          p #{alert.text}

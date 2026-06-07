@@ -8,17 +8,20 @@ block content
         .register-container 
                 .register-box
                         .register-form 
-                                form(action="/register" method= "POST")
+                                form(action="/signup" method= "POST")
                                         h1 Registrarse 
 
                                         .input-group-register 
-                                                input(type="text" name= "username" id= "username" required placeholder= "Usuario" values= formValues ? formValues.username : '')
+                                                input(type="text" name= "username" id= "username"  placeholder= "Usuario" values= formValues ? formValues.username : '')
                                         .input-group-register 
-                                                input(type="email" name="gmail" id= "gmail" required placeholder= "Correo electronico" values= formValues ? formValues.gmail  : '')
+                                                input(type="email" name="gmail" id= "gmail"  placeholder= "Correo electronico" values= formValues ? formValues.gmail  : '')
                                         .input-group-register 
-                                                input(type="password" name="password" id= "password" required placeholder= "Contraseña" values= formValues ? formValues.password : '')
+                                                input(type="password" name="password" id= "password"  placeholder= "Contraseña" values= formValues ? formValues.password : '')
                                         .input-group-register 
-                                                input(type="password" name="confirm_password" id="confirm_password" required placeholder= "Confirmar Contraseña" values= formValues ? formValues.confirm_password : '')
+                                                input(type="password" name="confirm_password" id="confirm_password"  placeholder= "Confirmar Contraseña" values= formValues ? formValues.confirm_password : '')
+                                     
+                                        
+                                                                
                                 
                                         .register-btn
                                                 button(type="submit") Crear Cuenta

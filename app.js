@@ -3,6 +3,7 @@ import 'dotenv/config'
 import sequelize from './db/config.js';
 import { connectDatabase } from './models/index.js';
 import userRoutes from './routes/userRoutes.js';
+import authRouter from './routes/auth.js';
 //Constantes
 
 const PORT = process.env.PORT;
@@ -24,15 +25,8 @@ app.set('views', './views');
 //rutas
 
 app.use('/', userRoutes);
+app.use('/', authRouter);
 
-/* 
-app.get('/login', (req, res) => {
-    res.render('login');
-})  
-
-app.get('/register', (req, res) =>{
-    res.render('register');
-}) */
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -46,6 +40,8 @@ app.get('/shop', (req, res) => {
 app.get('/art', (req, res) => {
     res.render('art');
 })
+
+
 
 
 //conexion a bd
