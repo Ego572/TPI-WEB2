@@ -24,14 +24,16 @@ body{
 
 }
 .upload-box{
-    position: relative;
-width: 700px;
-height: 400px;
+display: flex;
+gap: 50px;  
+position: relative;
+width: 860px;
+min-height: 450px;
 background: #000;
 border-radius: 20px;
 padding: 40px;
 border: gold solid;
-box-shadow: 0 0 20px gold;
+box-shadow: 0 0 20px gold; 
 }
 
 .upload-form h1 {
@@ -43,10 +45,11 @@ font-size:30px ;
 }
 
 .upload-form{
+    width: 350px;
     
       display: flex;
 flex-direction: column;
-align-items: flex-start;
+
 
 }
 
@@ -73,6 +76,15 @@ align-items: flex-start;
     background: transparent;
     outline: none;
     color: white;
+
+}
+.watermark-group input {
+    margin: 10px;
+
+}
+
+.comments-group input {
+    margin: 10px;
 
 }
 
@@ -109,4 +121,33 @@ border: none;
 
     box-shadow: 0 0px 10px gold;
     padding: 15px;
+}
+
+
+.preview-box{
+    width: 350px;
+    height: 350px;
+
+    border: 2px solid gold;
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+#preview-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    display: none;
+}
+
+.preview-box img{
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: contain;
 }

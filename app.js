@@ -5,6 +5,7 @@ import sequelize from './db/config.js';
 import { connectDatabase } from './models/index.js';
 import userRoutes from './routes/userRoutes.js';
 import authRouter from './routes/auth.js';
+import uploadRouter from './routes/uploadRouter.js'
 //Constantes
 
 const PORT = process.env.PORT;
@@ -38,6 +39,8 @@ app.set('views', './views');
 
 app.use('/', userRoutes);
 app.use('/', authRouter);
+app.use('/upload', uploadRouter);
+app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {

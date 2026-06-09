@@ -26,10 +26,20 @@ html(lang="en")
                             label(type) WaterMark
                             input(type="checkbox" name="Copyright" id="copyright" )     
                         .input-image-upload
-                            input(type="file" name="image" id="image")    
+                            input(type="file" name="image" id="image" accept="image/*")    
+                            input(type="hidden" name="imageBase64" id="imageBase64")
+                        .comments-group
+                            label(type) Permitir Comentarios
+                            input(type="checkbox" name="allowComments" id="allowComments" checked)    
                         
 
                         .upload-btn
                             button(type="submit") Publicar
+                .preview-box
+                    
+                    img#preview(src="" alt="Vista previa de la imagen")    
   
     a.button(href="/")  Volver                        
+
+
+script(src="/Upload64.js")

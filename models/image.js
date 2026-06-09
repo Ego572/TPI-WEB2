@@ -11,17 +11,9 @@ image.init({
         primaryKey: true,
         autoIncrement: true
     },
-    urlImage: {
-        type: DataTypes.STRING(255),
+    imageData: {
+        type: DataTypes.BLOB('long'),
         allowNull: false
-    },
-
-    coyright: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
-
-
-
     },
 
     licencia: {
