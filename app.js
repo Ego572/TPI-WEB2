@@ -1,4 +1,5 @@
 import express from 'express';
+import session from 'express-session';
 import 'dotenv/config'
 import sequelize from './db/config.js';
 import { connectDatabase } from './models/index.js';
@@ -16,6 +17,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+    
+});
 
 //motor de plantillas
 
@@ -40,6 +52,14 @@ app.get('/shop', (req, res) => {
 app.get('/art', (req, res) => {
     res.render('art');
 })
+
+app.get('/upload', (req, res) => {
+    res.render('upload');
+})
+
+app.get('/profile', (req, res) => {
+    res.render('profile');
+});
 
 
 

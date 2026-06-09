@@ -1,1 +1,35 @@
-extends layout.pug 
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="/styles/styleUpload.css")
+        title Document
+    body 
+        .container-upload
+            .upload-box
+                .upload-form
+                    h1 Subir Publicacion
+                    form(action="/upload" method="POST")
+                      
+                        .input-group-upload
+                            input(type="text" name="title" id="title" placeholder="Titulo de la publicacion")
+                     
+                            
+                        
+                        .input-group-upload
+                            input(type="text" name="tags" id="tags" placeholder="Tags (separados por comas)")
+                        .input-group-upload
+                            textarea(name="description" id="description" placeholder="Describe tu publicacion!")
+                        
+                        .watermark-group               
+                            label(type) WaterMark
+                            input(type="checkbox" name="Copyright" id="copyright" )     
+                        .input-image-upload
+                            input(type="file" name="image" id="image")    
+                        
+
+                        .upload-btn
+                            button(type="submit") Publicar
+  
+    a.button(href="/")  Volver                        

@@ -19,14 +19,17 @@ html(lang="en")
                     form(action="/search" method="GET")
                         input(type="text" name="query" placeholder="Buscar...")
                         button(type="submit") Buscar
-
-                .right 
-                    a.button(href="/login") Login
-                    a.button(href="/register") Register    
                 
+                .right
+                    if !user 
+                        a.button(href="/login") Login
+                        a.button(href="/register") Register   
+                    else
+                        a.button(href="/upload") Subir Publicacion
+                        form(action="/logout" method="POST")
+                            button.button(type="submit") Logout
+                        a.button(href="/profile") Profile     
+                
+block content 
 
-
-
-    main 
-        block content 
-
+block scripts

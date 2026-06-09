@@ -1,5 +1,5 @@
-
 extends layout.pug
+include mixins/alert
 
 block metadata
         title login 
@@ -14,10 +14,10 @@ block content
 
                     .input-group-login
 
-                        input(type="gmail" ,name="gmail", id="gmail",  required ,placeholder= "Correo Electonico")
+                        input(type="text" ,name="username", id="username" placeholder= "Usuario" values= formValues ? formValues.username : '')
                     .input-group-login
 
-                        input(type="password" name="password" id="password" required placeholder= "Contraseña")
+                        input(type="password" name="password" id="password"  placeholder= "Contraseña" values= formValues ? formValues.password : '')
 
 
                     .remember-forgot-login
@@ -29,5 +29,6 @@ block content
 
                     .register-link-login
                         label No tienes cuenta? 
-                        a(href="#") Registrate! 
+                        a(href="/register") Registrate! 
+                    +alert(alert)
 

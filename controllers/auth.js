@@ -17,11 +17,9 @@ export async function loginForm(req, res) {
 export async function login(req, res) {
     const { username, password } = req.body
 
-    const user = username.trim();
-    const pass = password.trim();
+    
 
-
-    if (!username || !pass) {
+    if (!username || !password) {
         res.status(400).render('login', {
             alert: {
                 status: "error",
@@ -31,11 +29,17 @@ export async function login(req, res) {
         })
         return;
     }
+    const usernameClean = username.trim();
+    const pass = password.trim();
+
+
+    
 
     try {
-        const user = await user.findOne({ where: { username: user } })
+        const foundUser = await user.findOne({ where: { userName: usernameClean } })
+       
 
-        if (!user) {
+        if (!foundUser) {
             res.status(400).render('login', {
                 alert: {
                     status: "error",
@@ -45,7 +49,9 @@ export async function login(req, res) {
             })
             return;
         }
-        const isValidated = await user.validatePassword(pass)
+        
+
+        const isValidated = await foundUser.validatePassword(pass)
 
         if (!isValidated) {
              res.status(400).render('login', {
@@ -58,9 +64,11 @@ export async function login(req, res) {
             return;
         }
 
-        req.session.user = {
-            id: user.id,
+         req.session.user = {
+            id: foundUser.idUser,
+            username: foundUser.userName
         };
+
     } catch (error) {
         console.error('error en login', error);
         return res.status(500).render('login', {
@@ -72,7 +80,7 @@ export async function login(req, res) {
         })
         return;
     }
-    res.redirect('/index')
+    res.redirect('/')
 
 }
 
@@ -100,7 +108,7 @@ export async function login(req, res) {
             return res.status(400).render('register', {
                 alert: {
                     status: "error",
-                    text: "no deben haber campos vacios "
+                    text: "No deben haber campos vacios "
                 },
                 formValues: req.body
 
@@ -113,7 +121,7 @@ export async function login(req, res) {
             return res.status(400).render('register', {
                 alert: {
                     status: "error",
-                    text: "las contraseñas no coinciden "
+                    text: "Las contraseñas no coinciden "
                 },
                 formValues: req.body
 
@@ -139,15 +147,7 @@ export async function login(req, res) {
             return;
         }
 
-        /* res.redirect('/index') */
-
-
-
-
-
-
-
-
+res.redirect('/') 
 
 
     }
@@ -155,7 +155,7 @@ export async function login(req, res) {
     export async function logout(req, res) {
         if(req.session){
             await req.session.destroy();
-            res.redirect('/index')
+            res.redirect('/')
             return;
         }
     }

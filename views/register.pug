@@ -1,12 +1,16 @@
+
 extends layout.pug
+include mixins/alert
 
 block metadata
         
         link(rel="stylesheet", href="/styles/styleRegister.css")
         title Document
 block content 
+           
         .register-container 
-                .register-box
+                .register-box   
+                        
                         .register-form 
                                 form(action="/signup" method= "POST")
                                         h1 Registrarse 
@@ -30,4 +34,5 @@ block content
 
                                         .register-login-link
                                                 label Ya tienes cuenta?
-                                                a(href= "#") Iniciar Sesion  
+                                                a(href= "/login") Iniciar Sesion  
+                                        +alert(alert)        
