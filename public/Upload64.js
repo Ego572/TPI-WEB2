@@ -1,4 +1,4 @@
-console.log("UPLOAD JS CARGADO");
+
 const imageInput = document.getElementById('image');
 const previewImage = document.getElementById('preview');
 const imageBase64 = document.getElementById('imageBase64');
@@ -14,19 +14,62 @@ imageInput.addEventListener('change', (e) => {
 
     const reader = new FileReader();
     reader.onload = (event) => {
-        const base64 = event.target.result;
+        const img = new Image();
 
-        console.log("BASE64 GENERADO");
-        console.log(base64.substring(0,50));
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
 
-        previewImage.src = base64;
-        imageBase64.value = base64;
+            
+            const maxWidth = 800;
+            const scale = Math.min(maxWidth / img.width, 1);
 
-        console.log("input oculto")
-        console.log(imageBase64.value.length)
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            
+            const compressedBase64 = canvas.toDataURL("image/jpeg", 0.5);
 
 
+            previewImage.src = compressedBase64;
+            imageBase64.value = compressedBase64;
+
+        };
+
+        img.src = event.target.result;
     };
-    reader.readAsDataURL(file)
+
+    reader.readAsDataURL(file);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
