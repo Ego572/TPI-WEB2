@@ -249,15 +249,16 @@ tag.belongsToMany(post, {
 
 
 export async function connectDatabase() {
+    console.log("ENTRO ALA BD")
     try {
         await sequelize.authenticate();
-        console.log("✅ Conexion a bd establecida");
+          console.log("CONECTADO A NEON");
 
         const tables = await sequelize.getQueryInterface().showAllTables();
         console.log("TABLAS EXISTENTES:", tables);
 
     } catch(err) {
-        console.error("❌ Error en la conexion a la Base de datos", err);
+        console.error(" Error en la conexion a la Base de datos", err);
     }
 }
 
