@@ -1,5 +1,5 @@
 import sequelize from "../db/config.js";
-import user from "./user.js"
+import User from "./user.js"
 import followers from "./follower.js"
 import favourite from "./favourite.js"
 import tag from "./tag.js"
