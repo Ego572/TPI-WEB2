@@ -137,29 +137,26 @@ export async function login(req, res) {
         }
 
         try {
-            const newUser = await user.create({
-                userName: usernameClean,
-                email: mail,
-                password: pass
-            })
-        } catch (error) {
-    console.error("========== ERROR REGISTRO ==========");
-    console.error(error);
-    console.error("MESSAGE:", error.message);
+    console.log("ANTES DEL CREATE");
 
-    if (error.errors) {
-        console.error(
-            error.errors.map(e => ({
-                field: e.path,
-                message: e.message
-            }))
-        );
-    }
+    const newUser = await user.create({
+        userName: usernameClean,
+        email: mail,
+        password: pass
+    });
+
+    console.log("DESPUES DEL CREATE");
+    console.log(newUser);
+
+} catch (error) {
+    console.error("ERROR REGISTRO");
+    console.error(JSON.stringify(error, null, 2));
+    console.error(error);
 
     return res.status(500).render('register', {
         alert: {
             status: "error",
-            text: error.message
+            text: "Error al crear usuario"
         },
         formValues: req.body
     });

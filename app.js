@@ -12,6 +12,7 @@ const PORT = process.env.PORT;
 
 
 const app = express();
+await connectDatabase();
 
 //middlewares
 
