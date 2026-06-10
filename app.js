@@ -71,20 +71,14 @@ app.get('/profile', (req, res) => {
 
 
 //conexion a bd
-sequelize.sync({alter: true}).then(() => {
-
-    //Servidor
-    app.listen(PORT, (err) => {
-        if (err) {
-            console.log('Error al inicar el servidor', err)
-            return;
-        }
-        console.log(`Servidor escuchando en el puerto ${PORT}`)
+sequelize.sync({ alter: true })
+    .then(() => {
+        console.log('Base de datos sincronizada');
+    })
+    .catch((err) => {
+        console.error('Error sincronizando la bd:', err);
     });
 
-
-})
-    .catch((err) => {
-        console.error('Error sincronizando la bd: ',err)
-    })
+// IMPORTANTE PARA VERCEL
+export default app;
 
