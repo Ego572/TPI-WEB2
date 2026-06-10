@@ -1,6 +1,6 @@
 import sequelize from "../db/config.js";
-import User from "./user.js"
-import Followers from "./follower.js"
+import user from "./user.js"
+import followers from "./follower.js"
 import favourite from "./favourite.js"
 import tag from "./tag.js"
 import msg from "./message.js"
@@ -100,14 +100,14 @@ interest.belongsTo(image,{
 //Un usuario puede seguir a muchos usuarios 
 
 user.belongsToMany(user, {
-    through: Followers,
+    through: followers,
     as: "following",
     foreignKey: "follower_id",
     otherKey: "following_id"
 })
 
 user.belongsToMany(user,{
-    through: Followers,
+    through: followers,
     as: "followers",
     foreignKey:"following_id",
     otherKey:"follower_id"
