@@ -249,7 +249,7 @@ tag.belongsToMany(post, {
 
 
 export async function connectDatabase() {
-    console.log("ENTRO ALA BD")
+    
     try {
         await sequelize.authenticate();
 
