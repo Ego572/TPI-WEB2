@@ -143,16 +143,27 @@ export async function login(req, res) {
                 password: pass
             })
         } catch (error) {
-            console.error(error);
-             return res.status(500).render('register', {
-                alert: {
-                    status: "error",
-                    text: "Error al crear el usuario"
-                },
-                formValues: req.body
-            })
-            return;
-        }
+    console.error("========== ERROR REGISTRO ==========");
+    console.error(error);
+    console.error("MESSAGE:", error.message);
+
+    if (error.errors) {
+        console.error(
+            error.errors.map(e => ({
+                field: e.path,
+                message: e.message
+            }))
+        );
+    }
+
+    return res.status(500).render('register', {
+        alert: {
+            status: "error",
+            text: error.message
+        },
+        formValues: req.body
+    });
+}
 
 res.redirect('/') 
 

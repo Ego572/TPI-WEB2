@@ -3,7 +3,7 @@ import sequelize from "../db/config.js";
 
 class user extends Model {
     validatePassword(password) {
-        return this.password === this.password;
+        return this.password === password;
     }
 
  }
