@@ -15,7 +15,7 @@ export async function loginForm(req, res) {
 }
 
 export async function login(req, res) {
-    const { username, password } = req.body
+    const { username, password, remember } = req.body
 
     
 
@@ -69,6 +69,8 @@ export async function login(req, res) {
             username: foundUser.userName
         };
 
+        
+
     } catch (error) {
         console.error('error en login', error);
         return res.status(500).render('login', {
@@ -80,6 +82,11 @@ export async function login(req, res) {
         })
         return;
     }
+
+    if(remember) {
+            req.session.cookie.maxAge = 30 * 24 * 60* 60 * 1000;
+        }
+
     res.redirect('/')
 
 }

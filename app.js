@@ -21,7 +21,10 @@ app.use(express.static('public'));
 app.use(session({
     secret: 'secret-key',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: null
+    }
 }));
 
 app.use((req, res, next) => {
