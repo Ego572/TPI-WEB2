@@ -1,6 +1,6 @@
 import sequelize from "../db/config.js";
 import User from "./user.js"
-import followers from "./follower.js"
+import Followers from "./follower.js"
 import favourite from "./favourite.js"
 import tag from "./tag.js"
 import msg from "./message.js"
