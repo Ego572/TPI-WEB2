@@ -137,20 +137,24 @@ export async function login(req, res) {
         }
 
         try {
-    console.log("ANTES DEL CREATE");
+  
 
     const newUser = await user.create({
         userName: usernameClean,
         email: mail,
         password: pass
     });
+    
+    req.session.user = {
+    id: newUser.idUser,
+    userName: newUser.userName,
+    email: newUser.email
+};
 
-    console.log("DESPUES DEL CREATE");
-    console.log(newUser);
+    
 
 } catch (error) {
-    console.error("ERROR REGISTRO");
-    console.error(JSON.stringify(error, null, 2));
+    
     console.error(error);
 
     return res.status(500).render('register', {
