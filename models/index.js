@@ -100,14 +100,14 @@ interest.belongsTo(image,{
 //Un usuario puede seguir a muchos usuarios 
 
 user.belongsToMany(user, {
-    through: followers,
+    through: Followers,
     as: "following",
     foreignKey: "follower_id",
     otherKey: "following_id"
 })
 
 user.belongsToMany(user,{
-    through: followers,
+    through: Followers,
     as: "followers",
     foreignKey:"following_id",
     otherKey:"follower_id"
