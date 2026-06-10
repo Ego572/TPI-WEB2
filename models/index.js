@@ -248,20 +248,17 @@ tag.belongsToMany(post, {
 
 
 
-
 export async function connectDatabase() {
-    try{
+    try {
         await sequelize.authenticate();
-        console.log("Conexion a bd establecida")
-        await sequelize.sync({alter: true})
-        console.log("Modelos Sincronizados")
+        console.log("✅ Conexion a bd establecida");
 
-    } catch(err){
-        console.error("Error en la conexion a la Base de datos", err)
+        const tables = await sequelize.getQueryInterface().showAllTables();
+        console.log("TABLAS EXISTENTES:", tables);
 
-
+    } catch(err) {
+        console.error("❌ Error en la conexion a la Base de datos", err);
     }
-    
 }
 
 export {collection,comment,favourite,Followers,image,interest,message,notification,post,rating,report,tag,user}

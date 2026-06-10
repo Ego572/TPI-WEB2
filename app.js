@@ -14,6 +14,14 @@ const PORT = process.env.PORT;
 const app = express();
 await connectDatabase();
 
+sequelize.sync({ force: true })
+    .then(() => {
+        console.log("TABLAS CREADAS");
+    })
+    .catch(err => {
+        console.error("ERROR SYNC:", err);
+    });
+
 //middlewares
 
 app.use(express.json());
