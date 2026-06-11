@@ -1,7 +1,7 @@
-import { post } from "../models/post.js";
-import { image } from "../models/image.js";
-import { rating } from "../models/rating.js";
-import { Sequelize, where } from "sequelize";
+import  post  from "../models/post.js";
+import  image  from "../models/image.js";
+import  rating  from "../models/rating.js";
+import { Sequelize } from "sequelize";
 
 export async function postDetail(req, res) {
     try {
