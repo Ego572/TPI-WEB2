@@ -6,6 +6,8 @@ export async function home(req, res) {
     const posts = await Post.findAll({
         include: [Image]
     });
+try {
+    
 
     const postsConImagen = posts.map(post => {
          const postJSON = post.toJSON();
@@ -18,9 +20,14 @@ export async function home(req, res) {
         return postJSON;
 
     });
+    
 
     res.render("index", {
         posts: postsConImagen
     })
+      } catch (error) {
+        console.error("Error en home", error);
+        res.render("index", {posts: []});
     
+}  
 }
