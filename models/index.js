@@ -253,7 +253,7 @@ export async function connectDatabase() {
     try {
         await sequelize.authenticate();
 
-        await sequelize.sync({alter: true})
+        await sequelize.sync();
         console.log("Modelos Sincronizados")
 
     } catch(err) {
