@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-.card{
+.card-post{
     break-inside: avoid;
     margin-bottom: 20px;
 
@@ -16,15 +16,15 @@
     border: 1px solid gold;
 }
 
-.card img{
+.card-post img{
     width: 100%;
     display: block;
 }
 
-.card h3{
+.card-post h3{
     padding: 10px;
 }
 
-.card p{
+.card-post p{
     padding: 0 10px 10px;
 }
