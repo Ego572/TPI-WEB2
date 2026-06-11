@@ -7,6 +7,7 @@ import userRoutes from './routes/userRoutes.js';
 import authRouter from './routes/auth.js';
 import uploadRouter from './routes/uploadRouter.js'
 import  {  home  }  from './controllers/indexPostController.js';
+import postDetail from './controllers/postDetailController.js'
 //Constantes
 
 const PORT = process.env.PORT;
@@ -52,11 +53,9 @@ app.use(express.static('public'));
 
 
 app.get('/', home);
-    
 
-app.get('/shop', (req, res) => {
-    res.render('shop');
-})
+app.get('/post/:id', postDetail);
+    
 
 
 app.get('/art', (req, res) => {
