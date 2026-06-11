@@ -1,3 +1,5 @@
+import pg from "pg";
+console.log("PG CARGADO:", typeof pg);
 
 import { Sequelize } from "sequelize";
 
@@ -15,6 +17,7 @@ const sequelize = new Sequelize({
         }
     },
 
+  
 });
 
 export default sequelize;
