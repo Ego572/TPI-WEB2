@@ -1,0 +1,30 @@
+.container-posts{
+    column-count: 4;
+    column-gap: 20px;
+    padding: 20px;
+}
+
+.card{
+    break-inside: avoid;
+    margin-bottom: 20px;
+
+    background: #111;
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border: 1px solid gold;
+}
+
+.card img{
+    width: 100%;
+    display: block;
+}
+
+.card h3{
+    padding: 10px;
+}
+
+.card p{
+    padding: 0 10px 10px;
+}
