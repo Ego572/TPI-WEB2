@@ -11,8 +11,10 @@ export async function postDetail(req, res) {
         const Post = await post.findOne({
             where: { idPost: id},
             include: [
-                {model: image},
-                {model: rating},
+                {model: image,
+                    include:[{model: rating}]
+                },
+
                 {model: comment, 
                     include: [{model: user, attributes:["userName"]}]
                 }
@@ -29,10 +31,10 @@ export async function postDetail(req, res) {
             postJSON.images[0].base64 = buffer.toString("base64");
         }
 
-        const ratings = postJSON.ratings ?? [];
+        const ratings = postJSON.images?.[0]?.ratings ??[];
         const totalRating = ratings.length > 0 
         ? (ratings.reduce((sum, r) => sum + r.valor, 0) / ratings.length).toFixed(1)
-            : null
+            : null;
 
          const userRating = req.session.user 
          ? ratings.find(r => r.idUser === req.session.user.id)?.valor ?? null
