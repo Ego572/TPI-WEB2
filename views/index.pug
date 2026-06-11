@@ -7,7 +7,7 @@ block content
        .container-posts    
             each post in posts 
                 .card-post  
-                    if post.image.length >0 
+                    if post.images && post.images.length > 0 
 
                         img(src= `data:image/jpeg;base64,${post.images[0].base64}` alt= post.titulo)
 
