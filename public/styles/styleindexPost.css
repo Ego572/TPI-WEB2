@@ -40,8 +40,10 @@
 }
 
 .button-post{
+    color: gold;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 0px 10px gold;
     position: absolute;
-    bottom: 10px;
     right: 10px;
 
 }
