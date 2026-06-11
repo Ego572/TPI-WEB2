@@ -6,6 +6,7 @@ import { connectDatabase } from './models/index.js';
 import userRoutes from './routes/userRoutes.js';
 import authRouter from './routes/auth.js';
 import uploadRouter from './routes/uploadRouter.js'
+import  {  home  }  from './controllers/indexPostController.js';
 //Constantes
 
 const PORT = process.env.PORT;
@@ -50,9 +51,8 @@ app.use('/upload', uploadRouter);
 app.use(express.static('public'));
 
 
-app.get('/', (req, res) => {
-    res.render('index');
-})
+app.get('/', home);
+    
 
 app.get('/shop', (req, res) => {
     res.render('shop');

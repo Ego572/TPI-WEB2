@@ -2,7 +2,8 @@ import  Post  from "../models/post.js";
 import  Image  from "../models/image.js";
 
 export async function home(req, res) {
-
+    
+try {
     const posts = await Post.findAll({
         include:[
             {
@@ -10,7 +11,7 @@ export async function home(req, res) {
             }
         ]
     });
-try {
+
     
 
     const postsConImagen = posts.map(post => {
@@ -20,7 +21,7 @@ try {
 
         if (postJSON.images?.length > 0) {
             postJSON.images[0].base64 = 
-                Buffer.from(postJSON.images[0]).imageData.toString("base64")
+                Buffer.from(postJSON.images[0].imageData).toString("base64")
 
         }
         return postJSON;
