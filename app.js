@@ -13,15 +13,9 @@ const PORT = process.env.PORT;
 
 const app = express();
 
-await connectDatabase();
 
-sequelize.sync({ force: true })
-    .then(() => {
-        console.log("TABLAS CREADAS");
-    })
-    .catch(err => {
-        console.error("ERROR SYNC:", err);
-    });
+
+
 
 //middlewares
 
@@ -81,13 +75,7 @@ app.get('/profile', (req, res) => {
 
 
 //conexion a bd
-sequelize.sync({ alter: true })
-    .then(() => {
-        console.log('Base de datos sincronizada');
-    })
-    .catch((err) => {
-        console.error('Error sincronizando la bd:', err);
-    });
+await connectDatabase();
 
 // IMPORTANTE PARA VERCEL
 export default app;
