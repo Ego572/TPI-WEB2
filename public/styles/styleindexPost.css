@@ -41,6 +41,7 @@
 
 .button-post{
     color: gold;
+    width: 100px;
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 0px 10px gold;
     position: absolute;
