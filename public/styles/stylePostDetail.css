@@ -1,0 +1,78 @@
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .comments-section{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .comments-list{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-height: 300px;
+        overflow-y: auto;
+
+    }
+
+    .comment{
+        background: #1a1a1a;
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #333;
+    }
+
+    .comment-user{
+        color: gold;
+        font-weight: bold;
+        font-size: 0,85rem;
+
+
+    }
+
+    .comment-text{
+        
+        margin-top: 5px;
+        color: #ccc;
+
+    }
+    
+    .no-comments{
+        color: #666;
+        
+    }
+
+    .comment-form{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+
+    }
+
+    .comment-form textarea{
+        background: #1a1a1a;
+        border: 1px solid #444;
+        border-radius: 8px;
+        color: white;
+        padding: 10px;
+        resize: none;
+
+
+    }
+
+    .comment-form-button{
+        align-self: flex-end;
+        background: gold;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }

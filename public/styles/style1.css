@@ -91,6 +91,7 @@ input:focus {
 button.button {
     background-color: black;
     color: gold;
+    cursor: pointer;
      border: 1px solid gold;
 
 }

@@ -2,5 +2,66 @@ extends layout.js
 
 block metadata 
 
+    title= post.titulo 
+    link(rel="stylesheet" href="/styles/stylePostDetail.css")
 
-block content
+
+
+block content 
+    .post-detail-container  
+        .post-image-section 
+            if post.images && post.images.length > 0
+                img(src=`data:image/jpeg;base64,${post.images[0].base64}` alt=post.titulo)
+        .post-side-section 
+            h2= post.titulo 
+            p= post.description 
+
+            .rating-section 
+            h3 Rating 
+            if totalRating 
+                .rating-display 
+                    span.rating-number= totalRating 
+                    span / 5   
+                    span.rating-count   (#{post.ratings.length} votos)
+                    else 
+                    p Nadie a valorado este post, Se el primero! 
+
+                    if user 
+                        form(action=`/post/${post.idPost}/rating` method="POST")
+                            label Tu puntuacion: 
+                            .stars  
+                                each val in [1,2,3,4,5]
+                                    input(
+                                        type="radio"
+                                        name="valor"
+                                        valor = val
+                                        id=`stars${val}`
+                                        checked= userRating === val
+                                    )
+                                    label((for=`star${val}`)) ★
+                            button(type="submit" ) Puntuar
+                    else 
+                        p 
+                            a(href="/login") Inicia sesion para puntuar
+                .comments-section                               
+                    h3 Comentarios 
+                    if  post.comments && post.comments.length > 0 
+                        .comments-list 
+                            each comment in post.comment 
+                            .comment 
+                                span.comment-user = comment.user.userName
+                                p.comment-text = comment.texto 
+                    else 
+                        p.no-comment Todavia no hay comentarios, Se el primero! 
+
+                    if user
+                        form.comment-form(`/post/${post.idPost}/comment` method= "POST")            
+                        textarea(name="texto" placeholder="Escribi un comentario " rows="3")
+                        button(type="submit") Comentar 
+                    else 
+                        p 
+                            a(href="/login") Inicia sesion para comentar      
+
+
+
+
