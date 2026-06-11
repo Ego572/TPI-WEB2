@@ -81,7 +81,7 @@ app.get('/profile', (req, res) => {
 
 
 //conexion a bd
-sequelize.sync()
+sequelize.sync({ alter: true })
     .then(() => {
         console.log('Base de datos sincronizada');
     })
