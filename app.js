@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 
 const app = express();
-console.log("APP INICIADA");
+
 await connectDatabase();
 
 sequelize.sync({ force: true })
@@ -81,7 +81,7 @@ app.get('/profile', (req, res) => {
 
 
 //conexion a bd
-sequelize.sync({ alter: true })
+sequelize.sync()
     .then(() => {
         console.log('Base de datos sincronizada');
     })
