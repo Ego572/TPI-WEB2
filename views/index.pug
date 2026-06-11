@@ -11,7 +11,7 @@ block content
                     if post.images && post.images.length > 0 
 
                         img(src= `data:image/jpeg;base64,${post.images[0].base64}` alt= post.titulo)
-
+                        a.button(href="/") Ir
                     h3= post.titulo 
 
                     p= post.descripcion         
