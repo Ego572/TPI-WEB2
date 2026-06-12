@@ -76,6 +76,10 @@ app.get('/profile', (req, res) => {
 //conexion a bd
 await connectDatabase();
 
-// IMPORTANTE PARA VERCEL
-export default app;
-
+app.listen(PORT, (err) => {
+  if (err) {
+    console.error("Error al iniciar servidor: ", err);
+    return;
+  }
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
