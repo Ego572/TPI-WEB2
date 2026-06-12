@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.profile-header {
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+.profile-header h2 {
+    color: gold;
+}
+
+.profile-desc {
+    color: #ccc;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 20px;
+    margin: 10px 0;
+}
+
+.profile-stats span {
+    color: gold;
+}
+
+.profile-header form {
+    margin-top: 10px;
+}

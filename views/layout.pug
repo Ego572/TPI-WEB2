@@ -4,12 +4,13 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="/styles/style1.css")
+        link(rel="stylesheet" href="/styles/stylesalert.css")
         block metadata
 
-
-
+    include mixins/alert
 
     body 
+        
         .navbar 
             .navbar-box
                 .left 
@@ -27,7 +28,8 @@ html(lang="en")
                         a.button(href="/upload") Subir Publicacion
                         form(action="/logout" method="POST")
                             button.button(type="submit") Logout
-                        a.button(href="/profile") Profile     
+                        a.button(href="/profile") Profile   
+    +alert(alert)                      
                 
 block content 
 
