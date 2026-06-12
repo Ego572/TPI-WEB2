@@ -4,10 +4,11 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="/styles/styleUpload.css")
+        link(rel="stylesheet" href="/styles/stylesalert.css")
         title Document
     body 
         include mixins/alert
-        +alert(alert)
+        
         .container-upload
             .upload-box
                 .upload-form
@@ -37,11 +38,12 @@ html(lang="en")
 
                         .upload-btn
                             button(type="submit") Publicar
+                            +alert(alert)
                 .preview-box
                     
                     img#preview(src="" alt="Vista previa de la imagen")    
   
     a.button(href="/")  Volver                        
-
+    
 
 script(src="/Upload64.js")

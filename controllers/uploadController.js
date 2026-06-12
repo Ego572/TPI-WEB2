@@ -14,6 +14,13 @@ export async function createPost(req,res){
     try{
         const{ title,description,imageBase64,copyright,allowComments,tags} = req.body
 
+
+        if (!title?.trim() || !description?.trim()) {
+            return res.status(400).render("upload", {
+                alert: { status: "error", text: "El titulo y la descripcion no pueden estar vacios" }
+            });
+        }
+
         if (!imageBase64) {
             return res.status(400).render("upload", {
                 alert: { status: "error", text: "No se recibió la imagen" }
@@ -39,7 +46,8 @@ export async function createPost(req,res){
 
             titulo: title,
             descripcion: description,
-            comentariosHabilitados: allowComments === "on"
+            comentariosHabilitados: allowComments === "on",
+            idUser: req.session.user?.id
 
 
         });
