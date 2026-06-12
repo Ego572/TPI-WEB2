@@ -1,23 +1,20 @@
 import pg from "pg";
-console.log("PG CARGADO:", typeof pg);
+import dotenv from "dotenv";
+
+dotenv.config();
+
 
 import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize({
-    dialect: "postgres",
-    host: process.env.DB_HOST,
-    username: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
+    dialect: 'postgres',
+    host:process.env.DB_HOST,
+    username:process.env.DB_USER,
+    database:process.env.DB_NAME,
+    password:process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-    },
-
-  
-});
+    logging: false
+    
+})
 
 export default sequelize;
