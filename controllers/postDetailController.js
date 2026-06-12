@@ -126,6 +126,12 @@ export async function postDetail(req, res) {
             return res.redirect(`/post/${id}`);
         }
 
+        const Post = await post.findOne({where: {idPost: id}});
+        if(Post && Post.idUser === idUser) {
+            req.session.alert = { status: "error", text: "No podes ratear tu propia publicacion" };
+            return res.redirect(`/post/${id}`);
+        }
+
         const img = await image.findOne({where: {idPost : id }});
         if(!img) {
             req.session.alert = { status: "error", text: "Imagen no encontrada" };

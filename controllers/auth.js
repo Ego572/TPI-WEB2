@@ -147,7 +147,7 @@ export async function login(req, res) {
     
     req.session.user = {
     id: newUser.idUser,
-    userName: newUser.userName,
+    username: newUser.userName,
     email: newUser.email
 };
 
@@ -178,5 +178,3 @@ res.redirect('/')
             return;
         }
     }
-
-
