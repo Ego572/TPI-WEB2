@@ -30,7 +30,7 @@ export async function createPost(req,res){
 
         const wantsWatermark = copyright === "on";
         const username = req.session.user?.userName || req.session.user?.username || "";
-        console.log("copyright value:", copyright, "wantsWatermark:", wantsWatermark, "username:", username);
+        
 
         const post = await Post.create({
 
