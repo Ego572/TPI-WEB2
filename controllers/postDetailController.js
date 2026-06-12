@@ -21,12 +21,12 @@ export async function postDetail(req, res) {
             ]
 
         });
-        if(!post) return res.status(404).send("Post no encontrado")
+        if(!Post) return res.status(404).send("Post no encontrado")
 
-            const postJSON = post.toJSON();
+            const postJSON = Post.toJSON();
 
         if(postJSON.images?.length > 0 ){
-            const rawn = postJSON.images[0].imageData;
+            const raw = postJSON.images[0].imageData;
             const buffer = Buffer.isBuffer(raw) ? raw : Buffer.from(raw?.data ?? raw);
             postJSON.images[0].base64 = buffer.toString("base64");
         }
@@ -76,7 +76,7 @@ export async function postDetail(req, res) {
 
              res.redirect(`/post/${id}`);
 
- 
+
 
 
             
