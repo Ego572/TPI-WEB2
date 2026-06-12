@@ -6,6 +6,8 @@ html(lang="en")
         link(rel="stylesheet" href="/styles/styleUpload.css")
         title Document
     body 
+        include mixins/alert
+        +alert(alert)
         .container-upload
             .upload-box
                 .upload-form

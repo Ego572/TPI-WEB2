@@ -14,7 +14,10 @@ export async function userProfile(req, res) {
             attributes: ["idUser", "userName", "description"]
         });
 
-        if (!profileUser) return res.status(404).send("Usuario no encontrado");
+        if (!profileUser) {
+            req.session.alert = { status: "error", text: "Usuario no encontrado" };
+            return res.redirect("/");
+        }
 
         const posts = await post.findAll({
             where: { idUser: id },
@@ -54,7 +57,8 @@ export async function userProfile(req, res) {
 
     } catch (error) {
         console.error("Error en Profile: ", error);
-        res.status(500).send("Error al cargar el perfil");
+        req.session.alert = { status: "error", text: "Error al cargar el perfil" };
+        res.redirect("/");
     }
 }
 
@@ -64,22 +68,33 @@ export async function followUser(req, res) {
         const { id } = req.params; 
         const sessionUserId = req.session.user?.id;
 
-        if (!sessionUserId) return res.status(401).send("Tenes que estar logueado");
-        if (parseInt(id) === sessionUserId) return res.status(400).send("No te podes seguir a vos mismo");
+        if (!sessionUserId) {
+            req.session.alert = { status: "error", text: "Tenes que estar logueado" };
+            return res.redirect(`/profile/${id}`);
+        }
+        if (parseInt(id) === sessionUserId) {
+            req.session.alert = { status: "error", text: "No te podes seguir a vos mismo" };
+            return res.redirect(`/profile/${id}`);
+        }
 
         const targetUser = await user.findOne({ where: { idUser: id } });
-        if (!targetUser) return res.status(404).send("Usuario no encontrado");
+        if (!targetUser) {
+            req.session.alert = { status: "error", text: "Usuario no encontrado" };
+            return res.redirect("/");
+        }
 
         await Follower.findOrCreate({
             where: { follower_id: sessionUserId, following_id: id },
             defaults: { follower_id: sessionUserId, following_id: id }
         });
 
+        req.session.alert = { status: "success", text: "Ahora seguis a este usuario" };
         res.redirect(`/profile/${id}`);
 
     } catch (error) {
         console.error("Error en followUser: ", error);
-        res.status(500).send("Error al seguir al usuario");
+        req.session.alert = { status: "error", text: "Error al seguir al usuario" };
+        res.redirect(`/profile/${req.params.id}`);
     }
 }
 
@@ -89,16 +104,21 @@ export async function unfollowUser(req, res) {
         const { id } = req.params;
         const sessionUserId = req.session.user?.id;
 
-        if (!sessionUserId) return res.status(401).send("Tenes que estar logueado");
+        if (!sessionUserId) {
+            req.session.alert = { status: "error", text: "Tenes que estar logueado" };
+            return res.redirect(`/profile/${id}`);
+        }
 
         await Follower.destroy({
             where: { follower_id: sessionUserId, following_id: id }
         });
 
+        req.session.alert = { status: "success", text: "Dejaste de seguir a este usuario" };
         res.redirect(`/profile/${id}`);
 
     } catch (error) {
         console.error("Error en unfollowUser: ", error);
-        res.status(500).send("Error al dejar de seguir al usuario");
+        req.session.alert = { status: "error", text: "Error al dejar de seguir al usuario" };
+        res.redirect(`/profile/${req.params.id}`);
     }
 }

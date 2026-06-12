@@ -6,10 +6,10 @@ html(lang="en")
         link(rel="stylesheet" href="/styles/style1.css")
         block metadata
 
-
-
+    include mixins/alert
 
     body 
+        +alert(alert)
         .navbar 
             .navbar-box
                 .left 

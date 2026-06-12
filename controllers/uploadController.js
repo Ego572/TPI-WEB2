@@ -15,8 +15,10 @@ export async function createPost(req,res){
         const{ title,description,imageBase64,copyright,allowComments,tags} = req.body
 
         if (!imageBase64) {
-        return res.status(400).send("No se recibió la imagen en Base64");
-}
+            return res.status(400).render("upload", {
+                alert: { status: "error", text: "No se recibió la imagen" }
+            });
+        }
 
 
 
@@ -97,14 +99,15 @@ export async function createPost(req,res){
 
         });
 
+        req.session.alert = { status: "success", text: "Publicacion creada con exito" };
         res.redirect("/");
 
     }catch (error){
         console.error(error);
 
-        res.status(500).send(
-            "Error al crear la publicacion"
-        );
+        res.status(500).render("upload", {
+            alert: { status: "error", text: "Error al crear la publicacion" }
+        });
 
     }
 }

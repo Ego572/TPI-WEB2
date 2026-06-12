@@ -21,7 +21,15 @@ export async function postDetail(req, res) {
             ]
 
         });
-        if(!Post) return res.status(404).send("Post no encontrado")
+        if(!Post) return res.status(404).render("postDetail", {
+            post: null,
+            totalRating: null,
+            userRating: null,
+            alert: {
+                status: "error",
+                text: "Post no encontrado"
+            }
+        })
 
             const postJSON = Post.toJSON();
 
@@ -51,8 +59,15 @@ export async function postDetail(req, res) {
         
     } catch (error) {
         console.error("Error en postDetail: ", error );
-            res.status(500).send("Error al cargar el post")
-        
+        res.status(500).render("postDetail", {
+            post: null,
+            totalRating: null,
+            userRating: null,
+            alert: {
+                status: "error",
+                text: "Error al cargar el post"
+            }
+        })
     }
 
 
@@ -65,8 +80,14 @@ export async function postDetail(req, res) {
             const {texto} = req.body;
             const idUser = req.session.user?.id;
 
-            if(!idUser ) return res.status(401).send("Tenes que estar logueado");
-            if(!texto?.trim()) return res.status(400).send ("El comentario no puede estar vacio ")
+            if(!idUser ) {
+                req.session.alert = { status: "error", text: "Tenes que estar logueado" };
+                return res.redirect(`/post/${id}`);
+            }
+            if(!texto?.trim()) {
+                req.session.alert = { status: "error", text: "El comentario no puede estar vacio" };
+                return res.redirect(`/post/${id}`);
+            }
 
              await comment.create({
                 texto: texto.trim(),
@@ -74,6 +95,7 @@ export async function postDetail(req, res) {
                 idPost: id
              });
 
+             req.session.alert = { status: "success", text: "Comentario agregado" };
              res.redirect(`/post/${id}`);
 
  
@@ -82,7 +104,8 @@ export async function postDetail(req, res) {
             
         } catch (error) {
             console.error("Error en createComment: ", error);
-            res.status(500).send("Error al guardar el comentario");
+            req.session.alert = { status: "error", text: "Error al guardar el comentario" };
+            res.redirect(`/post/${req.params.id}`);
             
         }
         
@@ -94,11 +117,20 @@ export async function postDetail(req, res) {
         const {valor } = req.body; 
         const idUser = req.session.user?.id;
 
-        if (!idUser) return res.status(401).send("Tenes q estar logueado");
-        if(!valor || valor < 1 || valor > 5 ) return res.status(400).send("Rating invalido ")
+        if (!idUser) {
+            req.session.alert = { status: "error", text: "Tenes que estar logueado" };
+            return res.redirect(`/post/${id}`);
+        }
+        if(!valor || valor < 1 || valor > 5 ) {
+            req.session.alert = { status: "error", text: "Rating invalido" };
+            return res.redirect(`/post/${id}`);
+        }
 
         const img = await image.findOne({where: {idPost : id }});
-        if(!img) return res.status(404).send("Imagen no encontrada")
+        if(!img) {
+            req.session.alert = { status: "error", text: "Imagen no encontrada" };
+            return res.redirect(`/post/${id}`);
+        }
 
         await rating.upsert({idUser, idImage: img.idImage, valor: parseInt(valor)})    
 
@@ -108,7 +140,8 @@ export async function postDetail(req, res) {
 
     } catch (error) {
         console.error("Error en ratePost: ", error);
-        res.status(500).send("Error al guardar el rating")
+        req.session.alert = { status: "error", text: "Error al guardar el rating" };
+        res.redirect(`/post/${req.params.id}`);
 
         
     }
