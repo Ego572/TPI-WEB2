@@ -1,0 +1,34 @@
+extends layout.pug
+
+block metadata
+    title Resultados de busqueda
+    link(rel="stylesheet", href="/styles/styleindexPost.css")
+    link(rel="stylesheet", href="/styles/styleSearch.css")
+
+block content
+    .search-results
+        h2 Resultados para: "#{query}"
+
+        if users.length > 0
+            h3.search-section-title Usuarios
+            .users-results
+                each u in users
+                    a.user-card(href=`/profile/${u.idUser}`)
+                        .user-card-name= u.userName
+                        if u.description
+                            .user-card-desc= u.description
+
+        h3.search-section-title Publicaciones
+
+        if posts.length > 0
+            .container-posts
+                each post in posts
+                    .card-post
+                        if post.images && post.images.length > 0
+                            img(src=`data:image/jpeg;base64,${post.images[0].base64}` alt=post.titulo)
+
+                        h3= post.titulo
+                        p= post.descripcion
+                        a.button-post(href=`/post/${post.idPost}`) Ir
+        else
+            p No se encontraron publicaciones.

@@ -1,5 +1,6 @@
 import Post from "../models/post.js"
 import Image from "../models/image.js"
+import Tag from "../models/tag.js"
 import sharp from "sharp"
 
 export async function uploadForm(req,res){
@@ -11,7 +12,7 @@ export async function uploadForm(req,res){
 export async function createPost(req,res){
 
     try{
-        const{ title,description,imageBase64,copyright,allowComments} = req.body
+        const{ title,description,imageBase64,copyright,allowComments,tags} = req.body
 
         if (!imageBase64) {
         return res.status(400).send("No se recibió la imagen en Base64");
@@ -40,6 +41,24 @@ export async function createPost(req,res){
 
 
         });
+
+        if (tags) {
+            const tagNames = tags
+                .split(",")
+                .map(t => t.trim())
+                .filter(t => t.length > 0);
+
+            const tagInstances = await Promise.all(
+                tagNames.map(name =>
+                    Tag.findOrCreate({ where: { nameTag: name } })
+                        .then(([tagInstance]) => tagInstance)
+                )
+            );
+
+            if (tagInstances.length > 0) {
+                await post.addTags(tagInstances);
+            }
+        }
 
         if (wantsWatermark && username) {
             const metadata = await sharp(imageBuffer).metadata();
