@@ -23,7 +23,7 @@ block content
                 else
                     p Nadie a valorado este post, Se el primero!
 
-                if user
+                if user && user.id !== post.idUser
                     form(action=`/post/${post.idPost}/rating` method="POST")
                         label Tu puntuacion:
                         .stars
@@ -37,6 +37,8 @@ block content
                                 )
                                 label(for=`star${val}`) ★
                         button(type="submit") Puntuar
+                else if user && user.id === post.idUser
+                    p No podes puntuar tu propia publicacion
                 else
                     p
                         a(href="/login") Inicia sesion para puntuar
@@ -63,8 +65,4 @@ block content
                             a(href="/login") Inicia sesion para comentar
                 else 
                     p.comments-disables Los comentarios estan deshabilitados para esta publicacion
-            a.goback-button(href="/") Volver            
-
-
-
-
+            a.goback-button(href="/") Volver
