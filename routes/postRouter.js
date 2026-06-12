@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { postDetail , ratePost , createComment } from "../controllers/postDetailController";
+import { postDetail , ratePost , createComment } from "../controllers/postDetailController.js";
 
 
 const postRouter = Router();

@@ -68,7 +68,7 @@ export async function postDetail(req, res) {
             if(!idUser ) return res.status(401).send("Tenes que estar logueado");
             if(!texto?.trim()) return res.status(400).send ("El comentario no puede estar vacio ")
 
-             await Comment.create({
+             await comment.create({
                 texto: texto.trim(),
                 idUser, 
                 idPost: id
@@ -76,7 +76,7 @@ export async function postDetail(req, res) {
 
              res.redirect(`/post/${id}`);
 
-
+ 
 
 
             
@@ -97,10 +97,10 @@ export async function postDetail(req, res) {
         if (!idUser) return res.status(401).send("Tenes q estar logueado");
         if(!valor || valor < 1 || valor > 5 ) return res.status(400).send("Rating invalido ")
 
-        const image = await image.findOne({where: {idPost : id }});
-        if(!image) return res.status(404).send("Imagen no encontrada")
+        const img = await image.findOne({where: {idPost : id }});
+        if(!img) return res.status(404).send("Imagen no encontrada")
 
-        await rating.upsert({idUser, idImage: image.idImage, valor: parseInt(valor)})    
+        await rating.upsert({idUser, idImage: img.idImage, valor: parseInt(valor)})    
 
         res.redirect(`/post/${id}`);
 

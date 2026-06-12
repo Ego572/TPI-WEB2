@@ -52,13 +52,18 @@ block content
                 else
                     p.no-comment Todavia no hay comentarios, Se el primero!
 
-                if user
-                    form.comment-form(action=`/post/${post.idPost}/comment` method="POST")
-                        textarea(name="texto" placeholder="Escribi un comentario" rows="3")
-                        button(type="submit") Comentar
-                else
-                    p
-                        a(href="/login") Inicia sesion para comentar
+                if post.comentariosHabilitados
+                    if user
+                        form.comment-form(action=`/post/${post.idPost}/comment` method="POST")
+                            textarea(name="texto" placeholder="Escribi un comentario" rows="3")
+                            button(type="submit") Comentar
+                        
+                    else
+                        p
+                            a(href="/login") Inicia sesion para comentar
+                else 
+                    p.comments-disables Los comentarios estan deshabilitados para esta publicacion
+            a.goback-button(href="/") Volver            
 
 
 

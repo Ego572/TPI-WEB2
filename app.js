@@ -8,6 +8,7 @@ import authRouter from './routes/auth.js';
 import uploadRouter from './routes/uploadRouter.js'
 import  {  home  }  from './controllers/indexPostController.js';
 import { postDetail } from './controllers/postDetailController.js'
+import  postRouter  from './routes/postRouter.js';
 //Constantes
 
 const PORT = process.env.PORT;
@@ -39,6 +40,8 @@ app.use((req, res, next) => {
     
 });
 
+app.use('/post', postRouter);
+
 //motor de plantillas
 
 app.set('view engine', 'pug');
@@ -58,8 +61,8 @@ app.get('/post/:id', postDetail);
     
 
 
-app.get('/art', (req, res) => {
-    res.render('art');
+app.get('/postDetail', (req, res) => {
+    res.render('postDetail');
 })
 
 app.get('/upload', (req, res) => {
