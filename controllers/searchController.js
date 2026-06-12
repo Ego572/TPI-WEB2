@@ -14,9 +14,9 @@ export async function search(req, res) {
                 posts: [],
                 users: []
             });
-        }
+        } 
 
-        // Posts que coincidan por titulo o por tag asociado
+        
         const posts = await post.findAll({
             include: [
                 { model: image },
@@ -48,7 +48,7 @@ export async function search(req, res) {
             return postJSON;
         });
 
-        // Usuarios que coincidan por nombre de usuario
+        
         const users = await user.findAll({
             where: {
                 userName: { [Op.like]: `%${query}%` }

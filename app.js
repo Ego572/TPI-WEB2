@@ -69,9 +69,7 @@ app.get('/upload', (req, res) => {
     res.render('upload');
 })
 
-app.get('/profile', (req, res) => {
-    res.render('profile');
-});
+
 
 
 
